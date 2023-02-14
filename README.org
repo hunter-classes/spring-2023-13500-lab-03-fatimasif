@@ -1,10 +1,10 @@
 * Spring 2023 - Lab 03
 
-* Last name:
+* Last name: Asif
 
-* First name:
+* First name: Fatima
 
-* GitHub username:
+* GitHub username: fatimasif
 
 * Notes:
 
