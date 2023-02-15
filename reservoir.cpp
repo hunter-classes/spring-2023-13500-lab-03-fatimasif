@@ -80,11 +80,15 @@ double get_east_storage(std::string date) {
 }
 */
 
+
+// WORKING CODE
+
 #include <iostream>
 #include "reservoir.h"
 #include <fstream>
 #include <cstdlib>
 #include <climits>
+
 
 void read_data(double east_storage[], double east_elevation[], double west_storage[], double west_elevation[], std::string dates[]) {
     std::ifstream fin("Current_Reservoir_Levels.tsv");
@@ -112,4 +116,187 @@ double get_east_storage(std::string date, double east_storage[], std::string dat
         }
     }
     return -1; // return -1 if date is not found
+
+
 }
+
+
+
+// WORKING CODE FOR PART B
+#include "reservoir.h"
+#include <fstream>
+#include <sstream>
+#include <string>
+
+void read_data(Reading* readings, int count) {
+    std::ifstream data("Current_Reservoir_Levels.tsv");
+    if (data.fail()) {
+        std::cerr << "Unable to open file\n";
+        exit(1);
+    }
+
+    std::string header;
+    getline(data, header);
+
+    std::string line;
+    for (int i = 0; i < count; i++) {
+        getline(data, line);
+        std::stringstream lineStream(line);
+
+        std::string date;
+        getline(lineStream, date, '\t');
+
+        lineStream >> readings[i].eastSt >> readings[i].eastEl
+                   >> readings[i].westSt >> readings[i].westEl;
+
+        std::string temp;
+        getline(lineStream, temp);
+
+        readings[i].day = i + 1;
+    }
+
+    data.close();
+}
+
+double get_east_storage(std::string date, Reading* readings, int count) {
+    double eastSt = -1;
+    for (int i = 0; i < count; i++) {
+        if (date == "01/" + std::to_string(readings[i].day) + "/2018") {
+            eastSt = readings[i].eastSt;
+            break;
+        }
+    }
+    return eastSt;
+}
+
+// double get_min_east(Reading* readings, int count) {
+//     double minEastSt = readings[0].eastSt;
+//     for (int i = 0; i < count; i++) {
+//         if (readings[i].eastSt < minEastSt) {
+//             minEastSt = readings[i].eastSt;
+//         }
+//     }
+//     return minEastSt;
+// }
+
+// double get_max_east(Reading* readings, int count) {
+//     double maxEastSt = readings[0].eastSt;
+//     for (int i = 0; i < count; i++) {
+//         if (readings[i].eastSt > maxEastSt) {
+//             maxEastSt = readings[i].eastSt;
+//         }
+//     }
+//     return maxEastSt;
+// }
+
+double get_min_east(Reading* readings, int count) {
+    double minEastSt = readings[0].eastSt;
+    for (int i = 0; i < count; i++) {
+        if (readings[i].eastSt < minEastSt) {
+            minEastSt = readings[i].eastSt;
+        }
+    }
+    return minEastSt;
+}
+
+double get_max_east(Reading* readings, int count) {
+    double maxEastSt = readings[0].eastSt;
+    for (int i = 0; i < count; i++) {
+        if (readings[i].eastSt > maxEastSt) {
+            maxEastSt = readings[i].eastSt;
+        }
+    }
+    return maxEastSt;
+}
+
+
+
+
+
+
+
+/*
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "reservoir.h"
+
+// const int ARRAY_SIZE = 365;
+// double eastStorages[ARRAY_SIZE];
+
+    // creating the get_east_storage function to filter through
+double get_east_storage(std::string date) {
+    double eastStorages[ARRAY_SIZE];
+    std::ifstream inFile("Current_Reservoir_Levels.tsv");
+    if (inFile.fail()) {
+        std::cerr << "Error opening file" << std::endl;
+        exit(1);
+    }
+
+    std::string junk;
+    getline(inFile, junk);
+
+    std::string day;
+    double eastSt, eastEl, westSt, westEl;
+    int i = 0;
+    while (inFile >> day >> eastSt >> eastEl >> westSt >> westEl) {
+        inFile.ignore(500, '\n');
+        if (day == date) {
+            eastStorages[i] = eastSt;
+            inFile.close();
+            return eastSt;
+        }
+        i++;
+    }
+
+    inFile.close();
+    return -1;
+}
+
+
+double get_min_east() {
+
+    double eastStorages[ARRAY_SIZE];
+
+    std::ifstream inFile("Current_Reservoir_Levels.tsv");
+    if (inFile.fail()) {
+        std::cerr << "Error opening file" << std::endl;
+        exit(1);
+    }
+
+    std::string junk;
+    getline(inFile, junk);
+
+
+    double min_storage = eastStorages[0];
+    for (int i = 0; i < ARRAY_SIZE; i++) {     
+        if (eastStorages[i] < min_storage) {
+            min_storage = eastStorages[i];
+        }
+    }
+    return min_storage;
+}
+
+double get_max_east() {
+    double eastStorages[ARRAY_SIZE];
+
+    std::ifstream inFile("Current_Reservoir_Levels.tsv");
+    if (inFile.fail()) {
+        std::cerr << "Error opening file" << std::endl;
+        exit(1);
+    }
+
+    std::string junk;
+    getline(inFile, junk);
+
+    double max_storage = eastStorages[0];
+    for (int i = 0; i < ARRAY_SIZE; i++) {    
+        if (eastStorages[i] > max_storage) {
+            max_storage = eastStorages[i];
+        }
+    }
+    return max_storage;
+}
+*/
+
+// CODE WORKS FOR PART A BUT NOT PART B
