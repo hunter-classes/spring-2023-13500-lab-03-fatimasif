@@ -36,6 +36,18 @@ int main() {
     std::cout << "Minimum storage in the East basin in 2018: " << minEastSt << std::endl;
     std::cout << "Maximum storage in the East basin in 2018: " << maxEastSt << std::endl;
 
+        // task C
+    std::string higher_basin = compare_basins(date);
+
+    std::string compare_basins(std::string date);
+    if (higher_basin == "East") {
+        std::cout << "On " << date << ", the East basin was higher." << std::endl;
+    } else if (higher_basin == "West") {
+        std::cout << "On " << date << ", the West basin was higher." << std::endl;
+    } else {
+        std::cout << "On " << date << ", the storage levels were equal in both basins." << std::endl;
+    }
+
     return 0;
 
 }

@@ -22,6 +22,11 @@ double get_east_storage(std::string date, double east_storage[], std::string dat
 double get_min_east(double east_storage[]);
 double get_max_east(double east_storage[]);
 
+    // task C
+std::string compare_basins(std::string date);
+
+
+
 #endif
 
 

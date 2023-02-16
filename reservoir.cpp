@@ -93,3 +93,38 @@ double get_max_east(double east_storage[]) {
     return maxEastSt;
 }
 
+
+/* TASK C
+Add a function std::string compare_basins(std::string date) that will return East if the East basin was higher on the 
+specified dateand West if the West was higher. It should return Equal if the values were the same.
+
+As with the other tasks, this function should read in the file and there should be no keyboard input. 
+Remember to test sufficiently from main
+*/
+
+    // the function takes in a string argument and date. It returns a string that indicates if the East or West basin has a higher storage level on a specified date
+std::string compare_basins(std::string date) {
+    double east_storage, west_storage;
+    std::string curr_date;
+    std::ifstream fin("Current_Reservoir_Levels.tsv");  // opens the file
+    if (fin.fail()) {
+        std::cerr << "File cannot be opened for reading." << std::endl;
+        exit(1); // exit if failed to open the file
+    }
+    std::string junk;
+    std::getline(fin, junk); // read and ignore the header line
+    
+        // looping through the file and only reading the current date, east storage, and west storage columns
+    while (fin >> curr_date >> east_storage >> junk >> west_storage >> junk) {
+        if (curr_date == date) {    // if the current date matches the specified date 
+            if (east_storage > west_storage) {  // the function will check if east storage is greater than west storage
+                return "East";
+            } else if (east_storage < west_storage) {   // otherwise it will check if the west is greater
+                return "West";
+            } else {
+                return "Equal"; // returns if both valyes are equal
+            }
+        }
+    }
+    return "Date not found";    // if the date is not listed in the data then this will be returned
+}
