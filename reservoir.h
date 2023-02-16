@@ -14,38 +14,16 @@ Assignment: reservoir.h, lab-03
 #include <string>
 
 const int NUM_DAYS = 365;
-
+    // task A
 void read_data(double east_storage[], double east_elevation[], double west_storage[], double west_elevation[], std::string dates[]);
-
 double get_east_storage(std::string date, double east_storage[], std::string dates[]);
 
     // task B
 double get_min_east(double east_storage[]);
-// double get_min_east(double east_storage[], std::string dates[]);
-
 double get_max_east(double east_storage[]);
 
 #endif
 
-
-//WORKING CODE FOR PART B
-// #include <iostream>
-// #include <string>
-
-// const int NUM_MONTHS = 12;
-
-// struct Reading {
-//     int day;
-//     double eastSt;
-//     double eastEl;
-//     double westSt;
-//     double westEl;
-// };
-
-// void read_data(Reading* readings, int count);
-// double get_east_storage(std::string date, Reading* readings, int count);
-// double get_min_east(Reading* readings, int count);
-// double get_max_east(Reading* readings, int count);
 
 
 

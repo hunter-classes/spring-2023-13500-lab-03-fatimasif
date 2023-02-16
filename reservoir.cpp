@@ -65,13 +65,14 @@ Test these by calling them from main and printing out results. As with task A, t
 */
 
 #include <limits> // for numeric_limits
-#include <fstream>
 #include <string>
 
-// const int NUM_DAYS = 365;
+    // both functions take in the array east_storage which contains the storage levels for the East basin and looks for the minimum and maximum
 
 double get_min_east(double east_storage[]) {
-    double minEastSt = std::numeric_limits<double>::max();
+    double minEastSt = std::numeric_limits<double>::max();  // initialize minEast variable to the maximum possible value
+        // iterate through the east_storage using a for loop and checks the values against minEastSt
+        // if an element is found with a lower value then minEastSt is updated to that value
     for (int i = 0; i < NUM_DAYS; i++) {
         if (east_storage[i] < minEastSt) {
             minEastSt = east_storage[i];
@@ -80,18 +81,10 @@ double get_min_east(double east_storage[]) {
     return minEastSt;
 }
 
-// double get_min_east(double east_storage[], std::string dates[]) {
-//     double minEastSt = std::numeric_limits<double>::max();
-//     for (int i = 0; i < NUM_DAYS; i++) {
-//         if (dates[i].substr(0, 4) == "2018" && east_storage[i] < minEastSt) {
-//             minEastSt = east_storage[i];
-//         }
-//     }
-//     return minEastSt;
-// }
-
-double get_max_east(double east_storage[]) {
-    double maxEastSt = std::numeric_limits<double>::lowest();
+double get_max_east(double east_storage[]) {   
+    double maxEastSt = std::numeric_limits<double>::lowest();   // initializes maxEastSt to the lowest possible value 
+        // iterates through east_storage by using a for loop and checking the value of each element against maxEastSt
+        // if an element is found with a greater valye then maxEastSt is updated to that value
     for (int i = 0; i < NUM_DAYS; i++) {
         if (east_storage[i] > maxEastSt) {
             maxEastSt = east_storage[i];
@@ -99,85 +92,4 @@ double get_max_east(double east_storage[]) {
     }
     return maxEastSt;
 }
-
-
-/* TASK B
-Add the following two functions to reservoir.cpp/h
-double get_min_east() - this function should return the minimum storage in the East basin in the 2018.
-double get_max_east() - this function should return the maximum storage in the East basin in the 2018.
-Test these by calling them from main and printing out results. As with task A, there should be no keyboard input.
-*/
-
-// #include "reservoir.h"
-// #include <fstream>
-// #include <sstream>
-// #include <string>
-
-// #include <limits>
-
-
-// void read_data(Reading* readings, int count) {
-//     std::ifstream data("Current_Reservoir_Levels.tsv");
-//     if (data.fail()) {
-//         std::cerr << "Unable to open file\n";
-//         exit(1);
-//     }
-
-//     std::string header;
-//     getline(data, header);
-
-//     std::string line;
-//     for (int i = 0; i < count; i++) {
-//         getline(data, line);
-//         std::stringstream lineStream(line);
-
-//         std::string date;
-//         getline(lineStream, date, '\t');
-
-//         lineStream >> readings[i].eastSt >> readings[i].eastEl
-//                    >> readings[i].westSt >> readings[i].westEl;
-
-//         std::string temp;
-//         getline(lineStream, temp);
-
-//         readings[i].day = i + 1;
-//     }
-
-//     data.close();
-// }
-
-// double get_east_storage(std::string date, Reading* readings, int count) {
-//     double eastSt = -1;
-//     for (int i = 0; i < count; i++) {
-//         if (date == "01/" + std::to_string(readings[i].day) + "/2018") {
-//             eastSt = readings[i].eastSt;
-//             break;
-//         }
-//     }
-//     return eastSt;
-// }
-
-
-// double get_min_east(Reading* readings, int count) {
-//     double minEastSt = std::numeric_limits<double>::max();
-//     for (int i = 0; i < count; i++) {
-//         if (readings[i].eastSt < minEastSt) {
-//             minEastSt = readings[i].eastSt;
-//         }
-//     }
-//     return minEastSt;
-// }
-
-
-// double get_max_east(Reading* readings, int count) {
-//     double maxEastSt = readings[0].eastSt;
-//     for (int i = 0; i < count; i++) {
-//         if (readings[i].eastSt > maxEastSt) {
-//             maxEastSt = readings[i].eastSt;
-//         }
-//     }
-//     return maxEastSt;
-// }
-
-
 
