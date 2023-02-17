@@ -6,7 +6,7 @@
 
 * GitHub username: fatimasif
 
-* Notes:
+* Notes: I use VS Code and Ubuntu to write my code, and everything seemed to be working fine and connected to my github. However, when I tried to git commit and git add my final completed lab there was an error that said "error: failed to push some refs to 'github.com:hunter-classes/spring-2023-13500-lab-03-fatimasif.git'". Thus, I manually updated and added the cpp files on github.
 
 
 
