@@ -7,6 +7,10 @@ Assignment: main.cpp, lab-03
 
 #include "reservoir.h"
 #include <iostream>
+#include "reverseorder.h"
+#include <iostream>
+#include "reverseorder.h"
+
 
 const int NUM_READINGS = 365;
 
@@ -38,7 +42,6 @@ int main() {
 
         // task C
     std::string higher_basin = compare_basins(date);
-
     std::string compare_basins(std::string date);
     if (higher_basin == "East") {
         std::cout << "On " << date << ", the East basin was higher." << std::endl;
@@ -48,6 +51,9 @@ int main() {
         std::cout << "On " << date << ", the storage levels were equal in both basins." << std::endl;
     }
 
-    return 0;
+
+        // task D
+    std::cout << "The reverse order for the specified dates and their elevation in ft is: \n";
+    reverse_order("07/01/2018", "07/07/2018");  
 
 }
