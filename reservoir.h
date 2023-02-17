@@ -25,13 +25,4 @@ double get_max_east(double east_storage[]);
     // task C
 std::string compare_basins(std::string date);
 
-
-
 #endif
-
-
-
-
-
-
-
