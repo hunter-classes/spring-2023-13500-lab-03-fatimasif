@@ -7,6 +7,7 @@ Instructor: M. Zamansky
 Assignment: reservoir.cpp, lab-03
 */
 
+
 /* TASK A
 Write a program east-storage.cpp that asks the user to input a string representing the date (in MM/DD/YYYY format), 
 and prints out the East basin storage on that day.
@@ -17,6 +18,7 @@ and prints out the East basin storage on that day.
 #include <fstream>
 #include <cstdlib>
 #include <climits>
+#include "reservoir.h"
 
     // creating a function to read the data from the Current_Reservoir_Levels.tsv file
     // the function takes in five arrays as parameters
@@ -66,14 +68,15 @@ Test these by calling them from main and printing out results. As with task A, t
 
 #include <limits> // for numeric_limits
 #include <string>
+#include <cfloat>
 
     // both functions take in the array east_storage which contains the storage levels for the East basin and looks for the minimum and maximum
 
 double get_min_east(double east_storage[]) {
-    double minEastSt = std::numeric_limits<double>::max();  // initialize minEast variable to the maximum possible value
+    double minEastSt = DBL_MAX; // initialize minEast variable to the maximum possible value for a double
         // iterate through the east_storage using a for loop and checks the values against minEastSt
         // if an element is found with a lower value then minEastSt is updated to that value
-    for (int i = 0; i < NUM_DAYS; i++) {
+    for (int i = 0; i < (NUM_DAYS-1); i++) {    // NUM-DAYS-1 allows it to run through the array with the correct amount of elements
         if (east_storage[i] < minEastSt) {
             minEastSt = east_storage[i];
         }
@@ -82,10 +85,10 @@ double get_min_east(double east_storage[]) {
 }
 
 double get_max_east(double east_storage[]) {   
-    double maxEastSt = std::numeric_limits<double>::lowest();   // initializes maxEastSt to the lowest possible value 
+    double maxEastSt = std::numeric_limits<double>::lowest();   // initializes maxEastSt to the lowest possible value for a double
         // iterates through east_storage by using a for loop and checking the value of each element against maxEastSt
         // if an element is found with a greater valye then maxEastSt is updated to that value
-    for (int i = 0; i < NUM_DAYS; i++) {
+    for (int i = 0; i < (NUM_DAYS-1); i++) {
         if (east_storage[i] > maxEastSt) {
             maxEastSt = east_storage[i];
         }
@@ -127,4 +130,5 @@ std::string compare_basins(std::string date) {
         }
     }
     return "Date not found";    // if the date is not listed in the data then this will be returned
+
 }
